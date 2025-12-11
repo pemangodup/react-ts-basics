@@ -3,14 +3,20 @@ import { CourseGoal as CGoal } from "../App";
 
 type CourseGoalListProps = {
   goals: CGoal[];
+  onDeleteGoal: (id: number) => void;
 };
 
-export default function CourseGoalList({ goals }: CourseGoalListProps) {
+export default function CourseGoalList({
+  goals,
+  onDeleteGoal,
+}: CourseGoalListProps) {
   return (
     <ul>
       {goals.map((goal) => (
         <li key={goal.id}>
-          <CourseGoal title={goal.title}>{goal.description}</CourseGoal>
+          <CourseGoal id={goal.id} onDelete={onDeleteGoal} title={goal.title}>
+            {goal.description}
+          </CourseGoal>
         </li>
       ))}
     </ul>
